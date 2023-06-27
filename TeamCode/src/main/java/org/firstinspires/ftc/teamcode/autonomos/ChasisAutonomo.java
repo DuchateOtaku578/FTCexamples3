@@ -25,6 +25,9 @@ public class ChasisAutonomo extends LinearOpMode {
             //todos los movimientos del robot en bucle aqui
             chasis.moverseEnfrente(0.5);
             telemetry.addLine("motor moviendose");
+            sleep(1000);
+            chasis.moverseAtras(0.5);
+            telemetry.addLine("cambio de giro de motor");
         }
 
     }
