@@ -28,6 +28,7 @@ public class ChasisAutonomo extends LinearOpMode {
             sleep(1000);
             chasis.moverseAtras(0.5);
             telemetry.addLine("cambio de giro de motor");
+            sleep(100);
         }
 
     }
