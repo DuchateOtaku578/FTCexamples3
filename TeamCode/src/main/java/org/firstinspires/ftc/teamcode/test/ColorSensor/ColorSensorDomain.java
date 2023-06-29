@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.test.ColorSensor;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
-public class ColorSensorDomain {
+public class ColorSensorDomain{
 
     ColorSensor colorsensor;
 
