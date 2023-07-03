@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.configuracion.RobotConfigMaster;
 import org.firstinspires.ftc.teamcode.domain.Chasis;
 
-@TeleOp(name="TeleOpManual", group="PushBot")
+@TeleOp(name="TeleOpManualcjsufsush", group="PushBot")
 
 public class TeleOpMaster extends LinearOpMode {
 
@@ -20,18 +20,20 @@ public class TeleOpMaster extends LinearOpMode {
         telemetry.update();
 
         //declaras las variables a usar
-        boolean stickIzq = gamepad1.left_stick_button;
 
-        boolean stickDer = gamepad1.right_stick_button;
 
         double incremento;
 
         final double velocidad = 0.5;
+        final double anular = 0.15;
 
         waitForStart();
 
         while(opModeIsActive()){
 
+            boolean stickIzq = gamepad1.left_stick_button;
+
+            boolean stickDer = gamepad1.right_stick_button;
             //botones de los controles
             double stickIzquierdoY = -gamepad1.left_stick_y;
             double stickIzquierdoX = gamepad1.left_stick_x;
@@ -62,22 +64,31 @@ public class TeleOpMaster extends LinearOpMode {
             }
 
             //controles del chasis
-            if (stickIzquierdoY > 0.5)
+            if(stickIzquierdoY > 0.5){
                 chasis.moverseAtras(velocidad + incremento);
-            else if (stickIzquierdoY < -0.5) {
+            } else if (stickIzquierdoY < -0.5){
                 chasis.moverseEnfrente(velocidad + incremento);
-            } else if (stickIzquierdoX < -0.5) {
-                chasis.moverseDerecha(velocidad + incremento);
-            } else if (stickIzquierdoX > 0.5) {
+            } else if (stickIzquierdoX > 0.5){
                 chasis.moverseIzquierda(velocidad + incremento);
-            } else if (stickDerechoX < -0.5) {
-                chasis.girarIzquierda(velocidad + incremento);
-            } else if (stickDerechoX > 0.5) {
+            } else if (stickIzquierdoX < -0.5){
+                chasis.moverseDerecha(velocidad + incremento);
+            } else if (stickDerechoX > 0.5){
                 chasis.girarDerecha(velocidad + incremento);
-            } else {
-                chasis.parar();
-            }
+            } else if (stickDerechoX < -0.5){
+                chasis.girarIzquierda(velocidad+incremento);
+            } else if (stickIzquierdoY > 0.5 && gamepad1.dpad_right==true) {
+                chasis.moverDiagonalDerEnf(velocidad + incremento, anular);
+            } else if (stickIzquierdoY > 0.5 && (gamepad1.dpad_left == true)) {
+                chasis.moverDiagonalIzqEnf(velocidad+incremento, anular);
+            } else if (stickIzquierdoY < -0.5 && (gamepad1.dpad_right == true)) {
+                chasis.moverDiagonalDerAtr(velocidad + incremento, anular);
+            } else if (stickIzquierdoY < -0.5 && (gamepad1.dpad_left== true)) {
+                chasis.moverDiagonalIzqAtr(velocidad + incremento, anular);
+            } else chasis.parar();
 
+            telemetry.addData("derechita uguuguguguug",gamepad1.dpad_right);
+            telemetry.addData("left ugu, angloparlante", gamepad1.dpad_left);
+            telemetry.update();
 
 
 

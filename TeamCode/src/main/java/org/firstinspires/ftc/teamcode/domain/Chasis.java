@@ -230,7 +230,34 @@ public class Chasis {
         atrasIzq.setPower(potencia);
     }
 
-    public void moverseEnfrenteDiagonalDerecha(double potencia, int pulsos){
+    public void moverDiagonalDerEnf (double potencia, double anular){
+
+        enfrenteDer.setPower(anular);
+        enfrenteIzq.setPower(-potencia);
+        atrasDer.setPower(-potencia);
+        atrasIzq.setPower(anular);
+    }
+
+    public void moverDiagonalIzqEnf (double potencia, double anular){
+        enfrenteDer.setPower(-potencia);
+        enfrenteIzq.setPower(anular);
+        atrasDer.setPower(anular);
+        atrasIzq.setPower(-potencia);
+    }
+    public void moverDiagonalDerAtr (double potencia, double anular){
+        enfrenteDer.setPower(-potencia);
+        enfrenteIzq.setPower(anular);
+        atrasDer.setPower(anular);
+        atrasIzq.setPower(-potencia);
+    }
+    public void moverDiagonalIzqAtr (double potencia, double anular){
+        enfrenteDer.setPower(anular);
+        enfrenteIzq.setPower(-potencia);
+        atrasDer.setPower(-potencia);
+        atrasIzq.setPower(anular);
+    }
+
+    /*public void moverseEnfrenteDiagonalDerecha(double potencia, int pulsos){
         int anular = 0;
         enfrenteDer.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         enfrenteIzq.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -247,7 +274,7 @@ public class Chasis {
         atrasDer.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         atrasIzq.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        moverseEnfrente(potencia);
+
 
         while(enfrenteDer.isBusy() && enfrenteIzq.isBusy() && atrasDer.isBusy() &&
                 atrasIzq.isBusy()){
@@ -260,7 +287,7 @@ public class Chasis {
         enfrenteIzq.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         atrasDer.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         atrasIzq.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
+    }*/
 
     public void girarDerecha(double potencia, int pulsos){
         enfrenteDer.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
