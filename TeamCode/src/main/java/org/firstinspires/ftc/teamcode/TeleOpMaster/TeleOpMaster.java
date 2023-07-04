@@ -22,7 +22,8 @@ public class TeleOpMaster extends LinearOpMode {
         //declaras las variables a usar
 
 
-        double incremento;
+        double incremento100;
+        double decremento15;
 
         final double velocidad = 0.5;
         final double anular = 0.15;
@@ -54,7 +55,8 @@ public class TeleOpMaster extends LinearOpMode {
             boolean y = gamepad1.y;
 
             //operador para el turbo
-            incremento = (stickIzq || stickDer) ? 1 : 0;
+            incremento100 = (stickIzq || stickDer) ? 1 : 0;
+            decremento15 = (gamepad1.b) ? 0.2 : 0;
 
             //datos de la velocidad en el telemetry
             if(stickDer || stickIzq){
@@ -65,25 +67,25 @@ public class TeleOpMaster extends LinearOpMode {
 
             //controles del chasis
             if(stickIzquierdoY > 0.5){
-                chasis.moverseAtras(velocidad + incremento);
+                chasis.moverseAtras(Chasis.controlesVelocidad(gamepad1, 0.5) + incremento100 );
             } else if (stickIzquierdoY < -0.5){
-                chasis.moverseEnfrente(velocidad + incremento);
+                chasis.moverseEnfrente(Chasis.controlesVelocidad(gamepad1, 0.5) + incremento100 );
             } else if (stickIzquierdoX > 0.5){
-                chasis.moverseIzquierda(velocidad + incremento);
+                chasis.moverseIzquierda(velocidad + incremento100 );
             } else if (stickIzquierdoX < -0.5){
-                chasis.moverseDerecha(velocidad + incremento);
+                chasis.moverseDerecha(velocidad + incremento100 );
             } else if (stickDerechoX > 0.5){
-                chasis.girarDerecha(velocidad + incremento);
+                chasis.girarDerecha(velocidad + incremento100 );
             } else if (stickDerechoX < -0.5){
-                chasis.girarIzquierda(velocidad+incremento);
-            } else if (stickIzquierdoY > 0.5 && gamepad1.dpad_right==true) {
-                chasis.moverDiagonalDerEnf(velocidad + incremento, anular);
-            } else if (stickIzquierdoY > 0.5 && (gamepad1.dpad_left == true)) {
-                chasis.moverDiagonalIzqEnf(velocidad+incremento, anular);
-            } else if (stickIzquierdoY < -0.5 && (gamepad1.dpad_right == true)) {
-                chasis.moverDiagonalDerAtr(velocidad + incremento, anular);
-            } else if (stickIzquierdoY < -0.5 && (gamepad1.dpad_left== true)) {
-                chasis.moverDiagonalIzqAtr(velocidad + incremento, anular);
+                chasis.girarIzquierda(velocidad + incremento100 );
+            } else if (stickIzquierdoY > 0.5 && gamepad1.right_trigger > 0.5) {
+                chasis.moverDiagonalDerEnf(velocidad + incremento100, anular);
+            } else if (stickIzquierdoY > 0.5 && gamepad1.left_trigger > 0.5) {
+                chasis.moverDiagonalIzqEnf(velocidad + incremento100, anular);
+            } else if (stickIzquierdoY < -0.5 && gamepad1.right_trigger > 0.5) {
+                chasis.moverDiagonalDerAtr(velocidad + incremento100, anular);
+            } else if (stickIzquierdoY < -0.5 && gamepad1.left_trigger > 0.5) {
+                chasis.moverDiagonalIzqAtr(velocidad + incremento100, anular);
             } else chasis.parar();
 
             telemetry.addData("derechita uguuguguguug",gamepad1.dpad_right);
